@@ -1,6 +1,6 @@
 import './globalSetting'
 import path from 'path'
-import { app, dialog } from 'electron'
+import { app, dialog, protocol } from 'electron'
 import cli from './cli'
 import setupExceptionHandler, { initExceptionLogger } from './exceptionHandler'
 import log from 'electron-log'
@@ -8,6 +8,14 @@ import App from './app'
 import Accessor from './app/accessor'
 import setupEnvironment from './app/env'
 import { getLogLevel } from './utils'
+
+app.whenReady().then(() => {
+  protocol.registerFileProtocol('file', (request, callback) => {
+    const url = request.url.substr(7)
+    // eslint-disable-next-line standard/no-callback-literal
+    callback({ path: url })
+  })
+})
 
 const initializeLogger = appEnvironment => {
   log.transports.console.level = process.env.NODE_ENV === 'development' ? true : 'error'

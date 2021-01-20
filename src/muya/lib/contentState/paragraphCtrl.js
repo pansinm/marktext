@@ -514,6 +514,7 @@ const paragraphCtrl = ContentState => {
       case 'flowchart':
       case 'sequence':
       case 'mermaid':
+      case 'graphviz':
       case 'vega-lite':
         this.insertContainerBlock(paraType, block)
         break

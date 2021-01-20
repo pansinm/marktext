@@ -98,6 +98,7 @@ export const CLASS_OR_ID = Object.freeze(genUpper2LowerKeyHash([
   'AG_IMAGE_BUTTONS',
   'AG_IMAGE_LOADING',
   'AG_EMPTY_IMAGE',
+  'AG_GRAPHVIZ',
   'AG_IMAGE_MARKED_TEXT',
   'AG_IMAGE_SRC',
   'AG_IMAGE_CONTAINER',

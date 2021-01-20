@@ -14,8 +14,6 @@ import ToolTip from './ui/tooltip'
 import './assets/styles/index.css'
 
 class Muya {
-  static plugins = []
-
   static use (plugin, options = {}) {
     this.plugins.push({
       plugin,
@@ -463,5 +461,7 @@ function getContainer (originContainer, options) {
   originContainer.replaceWith(container)
   return container
 }
+
+Muya.plugins = []
 
 export default Muya

@@ -20,7 +20,8 @@ const DIAGRAM_TYPE = [
   'mermaid',
   'flowchart',
   'sequence',
-  'vega-lite'
+  'vega-lite',
+  'graphviz'
 ]
 
 class ExportHtml {
@@ -53,8 +54,21 @@ class ExportHtml {
     }
   }
 
+  getFunctionType (className) {
+    if (/sequence/.test(className)) {
+      return 'sequence'
+    }
+    if (/flowchart/.test(className)) {
+      return 'flowchart'
+    }
+    if (/graphviz/.test(className)) {
+      return 'graphviz'
+    }
+    return 'vega-lite'
+  }
+
   async renderDiagram () {
-    const selector = 'code.language-vega-lite, code.language-flowchart, code.language-sequence'
+    const selector = 'code.language-vega-lite, code.language-flowchart, code.language-sequence, code.language-graphviz'
     const RENDER_MAP = {
       flowchart: await loadRenderer('flowchart'),
       sequence: await loadRenderer('sequence'),
@@ -63,7 +77,7 @@ class ExportHtml {
     const codes = this.exportContainer.querySelectorAll(selector)
     for (const code of codes) {
       const rawCode = unescapeHtml(code.innerHTML)
-      const functionType = /sequence/.test(code.className) ? 'sequence' : (/flowchart/.test(code.className) ? 'flowchart' : 'vega-lite')
+      const functionType = this.getFunctionType(code.className)
       const render = RENDER_MAP[functionType]
       const preParent = code.parentNode
       const diagramContainer = document.createElement('div')
@@ -85,8 +99,10 @@ class ExportHtml {
           const diagram = render.parse(rawCode)
           diagramContainer.innerHTML = ''
           diagram.drawSVG(diagramContainer, options)
-        } if (functionType === 'vega-lite') {
+        } else if (functionType === 'vega-lite') {
           await render(diagramContainer, JSON.parse(rawCode), options)
+        } else if (functionType === 'graphviz') {
+          debugger
         }
       } catch (err) {
         diagramContainer.innerHTML = '< Invalid Diagram >'

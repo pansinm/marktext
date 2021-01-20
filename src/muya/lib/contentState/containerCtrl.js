@@ -4,7 +4,8 @@ const FUNCTION_TYPE_LANG = {
   mermaid: 'yaml',
   sequence: 'yaml',
   'vega-lite': 'yaml',
-  html: 'markup'
+  html: 'markup',
+  graphviz: 'yaml'
 }
 
 const containerCtrl = ContentState => {
@@ -19,7 +20,6 @@ const containerCtrl = ContentState => {
       }
       figureBlock.mathStyle = style
     }
-
     const { preBlock, preview } = this.createPreAndPreview(functionType, value)
     this.appendChild(figureBlock, preBlock)
     this.appendChild(figureBlock, preview)

@@ -14,6 +14,7 @@ class StateRender {
     this.loadImageMap = new Map()
     this.loadMathMap = new Map()
     this.mermaidCache = new Map()
+    this.graphvizCache = new Map()
     this.diagramCache = new Map()
     this.tokenCache = new Map()
     this.labels = new Map()
@@ -127,7 +128,8 @@ class StateRender {
       const RENDER_MAP = {
         flowchart: await loadRenderer('flowchart'),
         sequence: await loadRenderer('sequence'),
-        'vega-lite': await loadRenderer('vega-lite')
+        'vega-lite': await loadRenderer('vega-lite'),
+        graphviz: await loadRenderer('graphviz')
       }
 
       for (const [key, value] of cache.entries()) {
@@ -160,6 +162,16 @@ class StateRender {
           target.innerHTML = `< Invalid ${functionType === 'flowchart' ? 'Flow Chart' : 'Sequence'} Codes >`
           target.classList.add(CLASS_OR_ID.AG_MATH_ERROR)
         }
+
+        try {
+          if (functionType === 'graphviz') {
+            const svg = await render.dot(code, 'svg')
+            target.innerHTML = svg
+          }
+        } catch (err) {
+          target.innerHTML = '< Invalid Graphviz Codes >'
+          target.classList.add(CLASS_OR_ID.AG_MATH_ERROR)
+        }
       }
       this.diagramCache.clear()
     }
@@ -178,6 +190,7 @@ class StateRender {
     patch(oldVdom, newVdom)
     this.renderMermaid()
     this.renderDiagram()
+    // this.renderGraphviz()
     this.codeCache.clear()
   }
 

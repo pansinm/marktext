@@ -23,6 +23,10 @@ const loadRenderer = async (name) => {
         m = await import('vega-embed')
         rendererCache.set(name, m.default)
         break
+      case 'graphviz':
+        m = await import('@hpcc-js/wasm/dist/index.node')
+        rendererCache.set(name, m.graphviz)
+        break
       default:
         throw new Error(`Unknown diagram name ${name}`)
     }
