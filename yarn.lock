@@ -1266,6 +1266,11 @@
   dependencies:
     node-addon-api "^3.0.2"
 
+"@hpcc-js/wasm@^1.1.0":
+  version "1.1.0"
+  resolved "http://npm.dev.casstime.com/@hpcc-js%2fwasm/-/wasm-1.1.0.tgz#aaf67ce572d38a144b45fec536443926dbfae459"
+  integrity sha512-sfKklKxOxG6s1Jmim9zZPmfRegQ+DR2dtyhlcEvCn60tq8tHb87j2Px8QGNzvzjlzTBykrxesoba0gfgKulDRA==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"

@@ -18,7 +18,7 @@
     "e2e": "yarn run pack && cross-env MARKTEXT_EXIT_ON_ERROR=1 mocha --timeout 10000 test/e2e",
     "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src test",
     "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src test",
-    "pack": "yarn run pack:main && yarn run pack:renderer",
+    "pack": "yarn run pack:main && yarn run pack:renderer && cp node_modules/@hpcc-js/wasm/dist/*.wasm dist/electron/",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "postinstall": "yarn run rebuild && yarn run lint:fix",
@@ -35,6 +35,7 @@
   "dependencies": {
     "@hfelix/electron-localshortcut": "^3.1.1",
     "@hfelix/electron-spellchecker": "^2.0.0",
+    "@hpcc-js/wasm": "^1.1.0",
     "@octokit/rest": "^16.43.2",
     "arg": "^5.0.0",
     "axios": "^0.21.0",

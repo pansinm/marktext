@@ -93,7 +93,7 @@ export default function (keybindings) {
     }]
   }
 
-  if (global.MARKTEXT_DEBUG) {
+  // if (global.MARKTEXT_DEBUG) {
     viewMenu.submenu.push({
       label: 'Show Developer Tools',
       accelerator: keybindings.getAccelerator('view.toggle-dev-tools'),
@@ -112,6 +112,6 @@ export default function (keybindings) {
         }
       }
     })
-  }
+  // }
   return viewMenu
 }
