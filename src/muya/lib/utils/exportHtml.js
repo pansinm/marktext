@@ -103,7 +103,6 @@ class ExportHtml {
         } else if (functionType === 'vega-lite') {
           await render(diagramContainer, JSON.parse(rawCode), options)
         } else if (functionType === 'graphviz') {
-          debugger
           const svg = await render.dot(rawCode, 'svg')
           diagramContainer.innerHTML = svg
         }
