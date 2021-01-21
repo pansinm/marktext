@@ -155,6 +155,11 @@ export const quickInsertObj = {
     label: 'sequence',
     icon: sequenceIcon
   }, {
+    title: 'Graphviz Diagram',
+    subTitle: 'Render graphviz diagram by @jpcc-js/wasm.',
+    label: 'graphviz',
+    icon: sequenceIcon
+  }, {
     title: 'Mermaid',
     subTitle: 'Render Diagram by mermaid.',
     label: 'mermaid',
