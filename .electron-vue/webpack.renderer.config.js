@@ -169,7 +169,7 @@ const rendererConfig = {
         ? path.resolve(__dirname, '../node_modules')
         : false
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
+    // new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin(getRendererEnvironmentDefinitions()),
     // Use node http request instead axios's XHR adapter.
     new webpack.NormalModuleReplacementPlugin(

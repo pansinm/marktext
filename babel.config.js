@@ -12,13 +12,13 @@ const presetsHash = {
   test: [
     [presetEnv,
     {
-      targets: { 'node': 14 }
+      targets: { node: 14 }
     }]
   ],
   main: [
     [presetEnv,
     {
-      targets: { 'node': 14 }
+      targets: { node: 14 }
     }]
   ],
   renderer: [
@@ -27,14 +27,14 @@ const presetsHash = {
       useBuiltIns: false,
       targets: {
         electron: require('electron/package.json').version,
-        node: 10
+        node: 14
       }
     }]
   ]
 }
 
 module.exports = function (api) {
-  const plugins = [proposalClassProperties, syntaxClassProperties, transformRuntime, syntaxDynamicImport, functionBind, exportDefault ]
+  const plugins = [proposalClassProperties, syntaxClassProperties, transformRuntime, syntaxDynamicImport, functionBind, exportDefault]
   const env = api.env()
   const presets = presetsHash[env]
 

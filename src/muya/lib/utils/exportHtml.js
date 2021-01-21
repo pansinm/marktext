@@ -72,7 +72,8 @@ class ExportHtml {
     const RENDER_MAP = {
       flowchart: await loadRenderer('flowchart'),
       sequence: await loadRenderer('sequence'),
-      'vega-lite': await loadRenderer('vega-lite')
+      'vega-lite': await loadRenderer('vega-lite'),
+      graphviz: await loadRenderer('graphviz')
     }
     const codes = this.exportContainer.querySelectorAll(selector)
     for (const code of codes) {
@@ -102,7 +103,8 @@ class ExportHtml {
         } else if (functionType === 'vega-lite') {
           await render(diagramContainer, JSON.parse(rawCode), options)
         } else if (functionType === 'graphviz') {
-          debugger
+            const svg = await render.dot(code, 'svg')
+            diagramContainer.innerHTML = svg
         }
       } catch (err) {
         diagramContainer.innerHTML = '< Invalid Diagram >'
