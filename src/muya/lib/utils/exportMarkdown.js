@@ -87,6 +87,7 @@ class ExportMarkdown {
             case 'mermaid':
             case 'flowchart':
             case 'sequence':
+            case 'graphviz':
             case 'vega-lite': {
               result.push(this.normalizeContainer(block, indent))
               break
